@@ -24,10 +24,6 @@ public class Vehicle : MonoBehaviour
     [SerializeField]
     private Track TrackObject = null;
 
-    [Tooltip("max rate at which the car's angular speed is modified, proporional to control vector (deg/s^2)")]
-    [SerializeField]
-    private float AngularAccleration = 90;
-
     [Tooltip("max rate at which the car is rotated, proporional to control vector (deg/s)")]
     [SerializeField]
     private float MaxAngularSpeed = 15f;

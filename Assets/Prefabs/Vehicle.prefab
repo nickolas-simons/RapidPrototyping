@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vehicle
   TrackObject: {fileID: 0}
-  MaxAngularAccleration: 0.6
+  AngularAccleration: 90
   MaxAngularSpeed: 2
   MaxForwardAcceleration: 0.03
   MaxForwardSpeed: 0.5
