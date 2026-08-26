@@ -33,7 +33,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: StandaloneWindows64
+          targetPlatform: WebGL
           allowDirtyBuild: true
 
       # Output
@@ -41,3 +41,33 @@ jobs:
         with:
           name: Build
           path: build
+
+  publish:
+    name: publish-job
+    runs-on: ubuntu-latest
+    steps:
+      # Download Artifacts
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: Build
+          path: build
+          
+      - name: Install Official Butler CLI
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip -d butler-cli
+          chmod +x butler-cli/butler
+          sudo mv butler-cli/butler /usr/local/bin/
+          rm -rf butler-cli butler.zip
+
+      - name: Verify Butler Installation
+        run: butler -V
+
+      - name: Push Build to Itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.ITCH_BUTLER_API_KEY }}
+        run: |
+          butler push build/WebGL ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME_ID }}:webgl
+
+
