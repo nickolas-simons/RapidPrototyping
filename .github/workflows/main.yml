@@ -43,6 +43,7 @@ jobs:
           path: build
 
   publish:
+    needs: build
     name: publish-job
     runs-on: ubuntu-latest
     steps:
