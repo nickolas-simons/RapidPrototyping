@@ -280,15 +280,23 @@ PrefabInstance:
       objectReference: {fileID: 1489311153}
     - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: MaxAngularSpeed
-      value: 1
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: MaxForwardSpeed
-      value: 0.15
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: MinForwardSpeed
-      value: 0.015
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+      propertyPath: MaxAngularAccleration
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+      propertyPath: MaxForwardAcceleration
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8377886014932933496, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: m_LocalPosition.x

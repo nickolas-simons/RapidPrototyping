@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -33,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        if (GravitySensor.current != null)
+            InputSystem.EnableDevice(GravitySensor.current);
+
         Time.timeScale = 1f;
         GameHud.ResetTimer();
         GameHud.gameObject.SetActive(true);

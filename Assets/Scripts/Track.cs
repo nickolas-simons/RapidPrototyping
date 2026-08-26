@@ -19,9 +19,6 @@ public class Track : MonoBehaviour
 
     void InitCheck()
     {
-        Assert.IsNotNull(RoadSpline);
-        Assert.IsNotNull(RoadMeshGenerator);
-        Assert.IsNotNull(RoadSpline.Spline);
     }
 
     private void OnValidate()

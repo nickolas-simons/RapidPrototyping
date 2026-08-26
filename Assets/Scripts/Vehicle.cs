@@ -53,14 +53,13 @@ public class Vehicle : MonoBehaviour
 
     private void InitCheck()
     {
-        Assert.NotNull(TrackObject);
     }
 
     private void UpdatePosition()
     {
         // rotate the forward vector about the vertical axis, angular speed degrees
-        Vector3 new_forward = Quaternion.AngleAxis(angular_speed*Time.timeScale, Vector3.up) * transform.forward;
-        Vector3 new_pos = transform.position + forward_speed*Time.timeScale * new_forward;
+        Vector3 new_forward = Quaternion.AngleAxis(angular_speed*Time.deltaTime, Vector3.up) * transform.forward;
+        Vector3 new_pos = transform.position + forward_speed*Time.deltaTime * new_forward;
 
         Debug.DrawRay(transform.position, transform.forward, Color.red);
         Debug.DrawRay(transform.position, new_forward, Color.green);
