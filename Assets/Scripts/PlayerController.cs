@@ -15,21 +15,26 @@ public class PlayerController : MonoBehaviour
     private InputAction ManualControlAction;
     void Start()
     {
-        TiltAction = InputSystem.actions.FindAction("Tilt");
+        if (GravitySensor.current != null)
+        {
+            InputSystem.EnableDevice(GravitySensor.current);
+        }
         ManualControlAction = InputSystem.actions.FindAction("ManualControl");
     }
 
     private void UpdateControlValue(){
-        PlayerControlInput = ManualControlAction.ReadValue<Vector2>();
-        Vector3 Gravity = TiltAction.ReadValue<Vector3>();
 
-        if(Gravity != Vector3.zero)
+        PlayerControlInput = Vector2.zero;
+        if (GravitySensor.current != null && GravitySensor.current.enabled)
         {
-            float roll = Vector3.SignedAngle(Gravity, Vector3.down, Vector3.back);
-            float pitch = Vector3.SignedAngle(Gravity, Vector3.down, Vector3.right);
-            PlayerControlInput[0] = Mathf.Clamp01(PlayerControlInput[0] + roll);
-            PlayerControlInput[1] = Mathf.Clamp01(PlayerControlInput[1] + pitch);
+            Vector3 gravity = GravitySensor.current.gravity.ReadValue();
+            float pitch = Mathf.Atan2(gravity.x, gravity.y) * Mathf.Rad2Deg;
+            float roll = Mathf.Atan2(-gravity.z, Mathf.Sqrt(gravity.x * gravity.x + gravity.y * gravity.y)) * Mathf.Rad2Deg;
+            PlayerControlInput[0] = Mathf.Clamp(pitch / 180, -1f, 1f);
+            PlayerControlInput[1] = Mathf.Clamp(roll / 180, -1f, 1f);
         }
+
+        PlayerControlInput += ManualControlAction.ReadValue<Vector2>();
     }
 
     // Update is called once per frame

@@ -155,7 +155,7 @@
                     "path": "<GravitySensor>/gravity",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Touch",
+                    "groups": ";Touch;Keyboard&Mouse;Gamepad;Joystick;XR",
                     "action": "Tilt",
                     "isComposite": false,
                     "isPartOfComposite": false

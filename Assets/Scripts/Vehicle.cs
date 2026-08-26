@@ -26,7 +26,7 @@ public class Vehicle : MonoBehaviour
 
     [Tooltip("max rate at which the car's angular speed is modified, proporional to control vector (deg/s^2)")]
     [SerializeField]
-    private float MaxAngularAccleration = 5f;
+    private float AngularAccleration = 90;
 
     [Tooltip("max rate at which the car is rotated, proporional to control vector (deg/s)")]
     [SerializeField]
@@ -90,8 +90,8 @@ public class Vehicle : MonoBehaviour
         forward_speed = Mathf.Clamp(forward_speed + forward_delta, MinForwardSpeed, MaxForwardSpeed);
         normalized_speed = forward_speed / MaxForwardSpeed;
 
-        float angular_delta = MaxAngularAccleration * angular_intent * Time.deltaTime;
-        angular_speed = Mathf.Clamp(angular_speed + angular_delta, -MaxAngularSpeed, MaxAngularSpeed);
+        float lerp_speed = angular_speed * 0.9f + angular_intent*90 * 0.1f;
+        angular_speed = Mathf.Clamp(lerp_speed, -MaxAngularSpeed, MaxAngularSpeed);
         normalized_angular_speed = angular_speed / MaxAngularSpeed;
     }
 
