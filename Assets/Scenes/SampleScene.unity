@@ -286,6 +286,10 @@ PrefabInstance:
       propertyPath: MaxForwardSpeed
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+      propertyPath: MinForwardSpeed
+      value: 0.015
+      objectReference: {fileID: 0}
     - target: {fileID: 8377886014932933496, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -67.838
@@ -649,6 +653,10 @@ PrefabInstance:
       propertyPath: SteeringWheel
       value: 
       objectReference: {fileID: 231472840}
+    - target: {fileID: 5570769472303452840, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
+      propertyPath: SteeringAngleBounds
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5901189647604884384, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
       propertyPath: m_Name
       value: HUD
