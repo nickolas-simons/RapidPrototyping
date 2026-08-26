@@ -69,6 +69,6 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.ITCH_BUTLER_API_KEY }}
         run: |
-          butler push build/WebGL ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAME_ID }}:webgl
+          butler push build/WebGL nsimons/rapidprototyping:webgl
 
 
