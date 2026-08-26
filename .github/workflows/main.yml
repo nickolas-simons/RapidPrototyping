@@ -56,7 +56,7 @@ jobs:
           
       - name: Install Official Butler CLI
         run: |
-          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip -d butler-cli
           chmod +x butler-cli/butler
           sudo mv butler-cli/butler /usr/local/bin/
