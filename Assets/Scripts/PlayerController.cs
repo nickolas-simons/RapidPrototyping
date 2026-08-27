@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
             PlayerControlInput[0] = Mathf.Clamp(roll / 90, -1f, 1f);
         }
 
-        PlayerControlInput[0] += ManualControlAction.ReadValue<Vector2>()[0]*90;
+        PlayerControlInput[0] += ManualControlAction.ReadValue<Vector2>()[0];
     }
 
     // Update is called once per frame

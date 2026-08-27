@@ -103,7 +103,7 @@ public class Vehicle : MonoBehaviour
         forward_speed = Mathf.Clamp(forward_speed + forward_delta, MinForwardSpeed, MaxForwardSpeed);
         normalized_speed = forward_speed / MaxForwardSpeed;
 
-        angular_speed = angular_intent;
+        angular_speed = angular_intent*MaxAngularSpeed;
         angular_speed = Mathf.Clamp(angular_speed, -MaxAngularSpeed, MaxAngularSpeed);
         normalized_angular_speed = angular_speed / MaxAngularSpeed;
     }
