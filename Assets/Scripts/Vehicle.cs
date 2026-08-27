@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class Vehicle : MonoBehaviour
 {
-    UnityEvent OnCrash = new UnityEvent();
+    public UnityEvent OnCrash = new UnityEvent();
     private float forward_speed = 0f;
 
     private float angular_speed = 0f;
