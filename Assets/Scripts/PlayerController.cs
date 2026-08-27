@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vehicle ControlledVehicle;
 
-    private InputAction TiltAction;
+    [SerializeField]
+    private float ForwardAcceleration = 0.5f;
 
     private Vector2 PlayerControlInput;
 
@@ -28,10 +29,11 @@ public class PlayerController : MonoBehaviour
         if (GravitySensor.current != null && GravitySensor.current.enabled)
         {
             Vector3 gravity = GravitySensor.current.gravity.ReadValue();
-            float pitch = Mathf.Atan2(gravity.x, gravity.y) * Mathf.Rad2Deg;
-            float roll = Mathf.Atan2(-gravity.z, Mathf.Sqrt(gravity.x * gravity.x + gravity.y * gravity.y)) * Mathf.Rad2Deg;
-            PlayerControlInput[0] = Mathf.Clamp(pitch / 180, -1f, 1f);
-            PlayerControlInput[1] = Mathf.Clamp(roll / 180, -1f, 1f);
+            Vector3.Normalize(gravity);
+            float pitch = ForwardAcceleration;
+            float roll = Mathf.Atan2(gravity.x, -gravity.y) * Mathf.Rad2Deg;
+            PlayerControlInput[0] = Mathf.Clamp(roll / 90, -1f, 1f);
+            PlayerControlInput[1] = Mathf.Clamp(pitch, -1f, 1f);
         }
 
         PlayerControlInput += ManualControlAction.ReadValue<Vector2>();

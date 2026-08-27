@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,7 +27,7 @@ public class Vehicle : MonoBehaviour
 
     [Tooltip("max rate at which the car is rotated, proporional to control vector (deg/s)")]
     [SerializeField]
-    private float MaxAngularSpeed = 15f;
+    private float MaxAngularSpeed = 20f;
 
     [Tooltip("max rate at which the car's forward speed is increased, proportional to control vector (m/s^2) ")]
     [SerializeField]
@@ -39,6 +40,15 @@ public class Vehicle : MonoBehaviour
     [Tooltip("min forward speed of the var (m/s) ")]
     [SerializeField]
     private float MinForwardSpeed = 0.1f;
+
+    [Tooltip("speed decrease value after a crash (m/s) ")]
+    [SerializeField]
+    private float CrashSpeedDecrease = 10f;
+
+    [Tooltip("speed decrease value after a crash (m/s) ")]
+    [SerializeField]
+    private float CrashLerpTime = 0.1f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -86,8 +96,8 @@ public class Vehicle : MonoBehaviour
         forward_speed = Mathf.Clamp(forward_speed + forward_delta, MinForwardSpeed, MaxForwardSpeed);
         normalized_speed = forward_speed / MaxForwardSpeed;
 
-        float lerp_speed = angular_speed * 0.9f + angular_intent*90 * 0.1f;
-        angular_speed = Mathf.Clamp(lerp_speed, -MaxAngularSpeed, MaxAngularSpeed);
+        angular_speed = angular_intent*MaxAngularSpeed * 0.2f + 0.8f * angular_speed;
+        angular_speed = Mathf.Clamp(angular_speed, -MaxAngularSpeed, MaxAngularSpeed);
         normalized_angular_speed = angular_speed / MaxAngularSpeed;
     }
 
@@ -106,13 +116,31 @@ public class Vehicle : MonoBehaviour
     private void CrashHandler()
     {
         Debug.Log("HANDLE CRASH");
-        ResetSpeeds();
+        forward_speed = Mathf.Clamp(forward_speed-CrashSpeedDecrease,MinForwardSpeed, MaxForwardSpeed);
 
+        StartCoroutine(Bounce());
+    }
+
+    private IEnumerator Bounce()
+    {
         (float t, Vector3 projected_pos) = TrackObject.GetPositionOnTrack(transform.position);
         transform.position = projected_pos;
-
         Vector3 TrackForward = TrackObject.GetForwardOnTrack(t);
+
+        Vector3 ReflectionVector = Vector3.Reflect(transform.forward, Vector3.Cross(TrackForward, Vector3.up));
+        ReflectionVector *= -1f;
         transform.rotation = Quaternion.LookRotation(TrackForward, Vector3.up);
+
+        float time_started = Time.time;
+        while (Time.time - time_started < CrashLerpTime)
+        {
+            t = Time.time - time_started;
+            transform.rotation = 
+        }
+
+
+
+        yield return null;
     }
 
     public float GetTrackProgress()
