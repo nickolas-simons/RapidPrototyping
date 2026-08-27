@@ -144,7 +144,7 @@ MonoBehaviour:
   MinForwardSpeed: 2
   CrashSpeedDecrease: 10
   CrashLerpTime: 0.08
-  CrashInwardPushPercentage: 0.05
+  CrashInwardPushPercentage: 0.2
 --- !u!1 &4368149913805330942
 GameObject:
   m_ObjectHideFlags: 0

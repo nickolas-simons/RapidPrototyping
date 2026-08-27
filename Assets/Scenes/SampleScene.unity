@@ -124,17 +124,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 625353014078479322, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
   m_PrefabInstance: {fileID: 1689025728063369183}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &231472840 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1567021191958158635, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
-  m_PrefabInstance: {fileID: 1689025728063369183}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +251,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &590252650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 601376447637690313, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+  m_PrefabInstance: {fileID: 676156534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &676156534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278,34 +272,6 @@ PrefabInstance:
       propertyPath: TrackObject
       value: 
       objectReference: {fileID: 1489311153}
-    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
-      propertyPath: CrashLerpTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
-      propertyPath: MaxAngularSpeed
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
-      propertyPath: MaxForwardSpeed
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
-      propertyPath: MinForwardSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
-      propertyPath: MaxAngularAccleration
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
-      propertyPath: MaxForwardAcceleration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
-      propertyPath: CrashInwardPushPercentage
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8377886014932933496, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -67.838
@@ -641,26 +607,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1287980862905774526, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1363198530138180873, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230214388930290238, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
-      propertyPath: PlayerVehicle
-      value: 
-      objectReference: {fileID: 1000344484}
-    - target: {fileID: 3123940418640466284, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303042313501611929, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5570769472303452840, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
       propertyPath: PlayerVehicle
       value: 
@@ -668,11 +614,7 @@ PrefabInstance:
     - target: {fileID: 5570769472303452840, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
       propertyPath: SteeringWheel
       value: 
-      objectReference: {fileID: 231472840}
-    - target: {fileID: 5570769472303452840, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
-      propertyPath: SteeringAngleBounds
-      value: 90
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 590252650}
     - target: {fileID: 5901189647604884384, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
       propertyPath: m_Name
       value: HUD
