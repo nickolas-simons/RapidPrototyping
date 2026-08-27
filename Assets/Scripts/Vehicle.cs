@@ -17,6 +17,8 @@ public class Vehicle : MonoBehaviour
 
     private float normalized_angular_speed = 0f;
 
+    private bool crashing = false;
+
     // vector representing the controlling intent of the vehicle, in bounds 0-1,
     // x axis represents turning intent
     // y axis represents braking and forward acceleraion
@@ -47,7 +49,11 @@ public class Vehicle : MonoBehaviour
 
     [Tooltip("speed decrease value after a crash (m/s) ")]
     [SerializeField]
-    private float CrashLerpTime = 0.1f;
+    private float CrashLerpTime = 1f;
+
+    [Tooltip("speed decrease value after a crash (m/s) ")]
+    [SerializeField]
+    private float CrashInwardPushPercentage = 0.1f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -79,8 +85,9 @@ public class Vehicle : MonoBehaviour
 
         float distance = Vector3.Distance(new_pos, projected_pos);
         Debug.Log("distance " + distance.ToString());
-        if (distance > TrackObject.GetWidth())
+        if (!crashing && distance > TrackObject.GetWidth())
         {
+            crashing = true;
             Debug.Log("CRASH");
             OnCrash.Invoke();
         }
@@ -96,7 +103,7 @@ public class Vehicle : MonoBehaviour
         forward_speed = Mathf.Clamp(forward_speed + forward_delta, MinForwardSpeed, MaxForwardSpeed);
         normalized_speed = forward_speed / MaxForwardSpeed;
 
-        angular_speed = angular_intent*MaxAngularSpeed * 0.2f + 0.8f * angular_speed;
+        angular_speed = angular_intent;
         angular_speed = Mathf.Clamp(angular_speed, -MaxAngularSpeed, MaxAngularSpeed);
         normalized_angular_speed = angular_speed / MaxAngularSpeed;
     }
@@ -117,29 +124,32 @@ public class Vehicle : MonoBehaviour
     {
         Debug.Log("HANDLE CRASH");
         forward_speed = Mathf.Clamp(forward_speed-CrashSpeedDecrease,MinForwardSpeed, MaxForwardSpeed);
-
         StartCoroutine(Bounce());
     }
 
     private IEnumerator Bounce()
     {
-        (float t, Vector3 projected_pos) = TrackObject.GetPositionOnTrack(transform.position);
-        transform.position = projected_pos;
+        (float t, Vector3 p) = TrackObject.GetPositionOnTrack(transform.position);
         Vector3 TrackForward = TrackObject.GetForwardOnTrack(t);
 
-        Vector3 ReflectionVector = Vector3.Reflect(transform.forward, Vector3.Cross(TrackForward, Vector3.up));
-        ReflectionVector *= -1f;
-        transform.rotation = Quaternion.LookRotation(TrackForward, Vector3.up);
+        Quaternion init_rot = transform.rotation;
 
-        float time_started = Time.time;
-        while (Time.time - time_started < CrashLerpTime)
+        Vector3 ReflectionVector = Vector3.Reflect(transform.forward, TrackForward.normalized)*-1;
+        Quaternion target_rot = Quaternion.LookRotation(ReflectionVector, Vector3.up);
+        float start = Time.time;
+
+        transform.position = CrashInwardPushPercentage * p + (1f - CrashInwardPushPercentage) * transform.position;
+
+        while (Time.time - start < CrashLerpTime)
         {
-            t = Time.time - time_started;
-            transform.rotation = 
+            t = (Time.time-start)/CrashLerpTime;
+            transform.rotation = Quaternion.SlerpUnclamped(init_rot, target_rot, t);
+            yield return null;
         }
+        transform.rotation = target_rot;
 
-
-
+        transform.position = CrashInwardPushPercentage * p + (1f - CrashInwardPushPercentage) * transform.position;
+        crashing = false;
         yield return null;
     }
 

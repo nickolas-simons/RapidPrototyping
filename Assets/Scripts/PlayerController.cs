@@ -26,17 +26,16 @@ public class PlayerController : MonoBehaviour
     private void UpdateControlValue(){
 
         PlayerControlInput = Vector2.zero;
+        PlayerControlInput[1] = Mathf.Clamp(ForwardAcceleration, -1f, 1f);
         if (GravitySensor.current != null && GravitySensor.current.enabled)
         {
             Vector3 gravity = GravitySensor.current.gravity.ReadValue();
             Vector3.Normalize(gravity);
-            float pitch = ForwardAcceleration;
             float roll = Mathf.Atan2(gravity.x, -gravity.y) * Mathf.Rad2Deg;
             PlayerControlInput[0] = Mathf.Clamp(roll / 90, -1f, 1f);
-            PlayerControlInput[1] = Mathf.Clamp(pitch, -1f, 1f);
         }
 
-        PlayerControlInput += ManualControlAction.ReadValue<Vector2>();
+        PlayerControlInput[0] += ManualControlAction.ReadValue<Vector2>()[0]*90;
     }
 
     // Update is called once per frame

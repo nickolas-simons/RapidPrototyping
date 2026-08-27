@@ -17,17 +17,22 @@ public class HUD : MonoBehaviour
     private Vehicle PlayerVehicle;
 
     [SerializeField]
-    private Image SteeringWheel;
+    private GameObject SteeringWheel;
 
     [SerializeField]
     private float SteeringAngleBounds = 90f;
 
+    [SerializeField]
+    private float WheelInterpRate = 0.9f;
+
     private float timer_start = 0f;
+
+    private Quaternion base_wheel_rot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        base_wheel_rot = SteeringWheel.transform.localRotation;
     }
 
     public void ResetTimer()
@@ -40,7 +45,12 @@ public class HUD : MonoBehaviour
     {
         Speedometer.value = PlayerVehicle.GetNormalizedSpeed();
         ProgressBar.value = PlayerVehicle.GetTrackProgress();
-        SteeringWheel.transform.localRotation = Quaternion.Euler(0,0,PlayerVehicle.GetNormalizedAngularSpeed() * -1f* SteeringAngleBounds);
+
+        float desired_y_rot = PlayerVehicle.GetNormalizedAngularSpeed() * SteeringAngleBounds;
+        Quaternion target_rot = base_wheel_rot * Quaternion.Euler(0,desired_y_rot, 0);
+        
+        float curr_z_rot = SteeringWheel.transform.localRotation.eulerAngles.z;
+        SteeringWheel.transform.localRotation = Quaternion.Slerp(target_rot, SteeringWheel.transform.localRotation, WheelInterpRate);
 
         int seconds = Mathf.RoundToInt(Time.time - timer_start);
         int minutes = seconds / 60;

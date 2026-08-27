@@ -451,7 +451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6995433744101124798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1368,6 +1368,7 @@ MonoBehaviour:
   PlayerVehicle: {fileID: 0}
   SteeringWheel: {fileID: 0}
   SteeringAngleBounds: 90
+  WheelInterpRate: 0.95
 --- !u!1 &8619672940448908338
 GameObject:
   m_ObjectHideFlags: 0
