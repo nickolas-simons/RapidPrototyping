@@ -368,7 +368,7 @@ Transform:
   m_GameObject: {fileID: 37526901}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.94596, y: -0, z: 231.18839}
+  m_LocalPosition: {x: -43.94596, y: -0, z: 229.6884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26288,7 +26288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4592481206293897757, guid: 287594f5f5ad7904b9d80870129b9dae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4592481206293897757, guid: 287594f5f5ad7904b9d80870129b9dae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26321,6 +26321,14 @@ PrefabInstance:
     - target: {fileID: 6879891327650013018, guid: 287594f5f5ad7904b9d80870129b9dae, type: 3}
       propertyPath: m_Name
       value: Track
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061996722445402496, guid: 287594f5f5ad7904b9d80870129b9dae, type: 3}
+      propertyPath: MeshWidth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061996722445402496, guid: 287594f5f5ad7904b9d80870129b9dae, type: 3}
+      propertyPath: CollisionWidth
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
