@@ -84,7 +84,6 @@ public class Vehicle : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(new_forward, Vector3.up);
 
         float distance = Vector3.Distance(new_pos, projected_pos);
-        Debug.Log("distance " + distance.ToString());
         if (!crashing && distance > TrackObject.GetWidth())
         {
             crashing = true;
@@ -133,9 +132,7 @@ public class Vehicle : MonoBehaviour
         Vector3 TrackForward = TrackObject.GetForwardOnTrack(t);
 
         Quaternion init_rot = transform.rotation;
-
-        Vector3 ReflectionVector = Vector3.Reflect(transform.forward, TrackForward.normalized)*-1;
-        Quaternion target_rot = Quaternion.LookRotation(ReflectionVector, Vector3.up);
+        Quaternion target_rot = Quaternion.LookRotation(TrackForward, Vector3.up);
         float start = Time.time;
 
         transform.position = CrashInwardPushPercentage * p + (1f - CrashInwardPushPercentage) * transform.position;
