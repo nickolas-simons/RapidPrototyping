@@ -1,47 +1,79 @@
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    const int WINDOW_SIZE = 1;
+
     [SerializeField]
     private Vehicle ControlledVehicle;
 
     [SerializeField]
-    private float ForwardAcceleration = 0.5f;
+    private float RelativeForwardInputDecay = -0.1f;
 
     private Vector2 PlayerControlInput;
 
     private InputAction ManualControlAction;
+    
+    private AudioClip MicSamples;
+
+    private float[] sample_window = new float[WINDOW_SIZE];
+
+    bool MicrophoneInUse = false;
     void Start()
     {
         if (GravitySensor.current != null)
         {
             InputSystem.EnableDevice(GravitySensor.current);
         }
+
+        if(Microphone.devices.Length > 0)
+        {
+            MicrophoneInUse = true;
+            MicSamples = Microphone.Start(null, true,1, AudioSettings.outputSampleRate);
+        }
         ManualControlAction = InputSystem.actions.FindAction("ManualControl");
     }
 
-    private void UpdateControlValue(){
+    public void StartShout()
+    {
+        PlayerControlInput[1] = 1f;
+    }
 
-        PlayerControlInput = Vector2.zero;
-        PlayerControlInput[1] = Mathf.Clamp(ForwardAcceleration, -1f, 1f);
+    public void EndShout()
+    {
+        PlayerControlInput[1] = RelativeForwardInputDecay;
+    }
+
+    private void UpdateControlValues(){
+        PlayerControlInput[0] = 0f;
+        float GyroSensitivity = Settings.Instance.GyroSensitivity;
+
         if (GravitySensor.current != null && GravitySensor.current.enabled)
         {
             Vector3 gravity = GravitySensor.current.gravity.ReadValue();
-            Vector3.Normalize(gravity);
-            float roll = Mathf.Atan2(gravity.x, -gravity.y) * Mathf.Rad2Deg;
-            PlayerControlInput[0] = Mathf.Clamp(roll / 90, -1f, 1f);
+            if(gravity != Vector3.zero)
+            {
+                Vector3.Normalize(gravity);
+                float roll = Mathf.Atan2(gravity.x, -gravity.y) * Mathf.Rad2Deg;
+                PlayerControlInput[0] = Mathf.Clamp(roll / 90 * GyroSensitivity, -1f, 1f);
+            }
         }
 
         PlayerControlInput[0] += ManualControlAction.ReadValue<Vector2>()[0];
+        if (MicrophoneInUse)
+        {
+            MicSamples.GetData(sample_window, Microphone.GetPosition(null) - WINDOW_SIZE);
+            Debug.Log("SAMPLE: " + sample_window.Last().ToString());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateControlValue();
+        UpdateControlValues();
 
         ControlledVehicle.SetControlVector(PlayerControlInput);
     }

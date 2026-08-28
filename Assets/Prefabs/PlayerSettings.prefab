@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &893179007774680414
+--- !u!1 &2056033543814449657
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 262331835544767112}
-  - component: {fileID: 8539741545008014202}
+  - component: {fileID: 2520404020744330883}
+  - component: {fileID: 3874627112882839892}
   m_Layer: 0
-  m_Name: PlayerController
-  m_TagString: GameController
+  m_Name: PlayerSettings
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &262331835544767112
+--- !u!4 &2520404020744330883
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893179007774680414}
+  m_GameObject: {fileID: 2056033543814449657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.55672, y: -6.57851, z: 5.51252}
+  m_LocalPosition: {x: -77.86587, y: 0.00001, z: 71.39919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8539741545008014202
+--- !u!114 &3874627112882839892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893179007774680414}
+  m_GameObject: {fileID: 2056033543814449657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 594f0f8c743b5fc4e98556c73e0093a6, type: 3}
+  m_Script: {fileID: 11500000, guid: e03fd7cec3a538944b0647b6d11afc0e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  ControlledVehicle: {fileID: 0}
-  RelativeForwardInputDecay: -0.2
+  m_EditorClassIdentifier: Assembly-CSharp::Settings
+  GyroSensitivity: 1.5
+  ShoutSensitivity: 1
