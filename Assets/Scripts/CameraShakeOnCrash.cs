@@ -55,6 +55,7 @@ public class CameraShakeOnCrash : MonoBehaviour
 
         transform.localPosition = originalLocalPosition;
         shakeCoroutine = null;
+
     }
 
     private void OnDisable()

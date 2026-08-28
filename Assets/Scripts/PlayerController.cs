@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
     private Vehicle ControlledVehicle;
 
     [SerializeField]
-    private float RelativeForwardInputDecay = -0.1f;
+    private float ShoutingAcceleration = -0.1f;
+
+    [SerializeField]
+    private float PassiveAccelereation = 1f;
 
     private Vector2 PlayerControlInput;
 
@@ -39,12 +42,12 @@ public class PlayerController : MonoBehaviour
 
     public void StartShout()
     {
-        PlayerControlInput[1] = 1f;
+        PlayerControlInput[1] = ShoutingAcceleration;
     }
 
     public void EndShout()
     {
-        PlayerControlInput[1] = RelativeForwardInputDecay;
+        PlayerControlInput[1] = PassiveAccelereation;
     }
 
     private void UpdateControlValues(){
