@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +14,9 @@ public class Creature : MonoBehaviour
 
     [SerializeField]
     private Track TrackObj;
+
+    [SerializeField]
+    private float RoadWidthBuffer;
 
     [SerializeField]
     private AnimationClip Idle;
@@ -29,13 +34,27 @@ public class Creature : MonoBehaviour
     private Direction MovementDirection;
 
     [SerializeField]
-    private Vector2 SpeedOffsetRange;
+    private Vector2 SpeedRange;
 
-    private Vector3 track_pos;
+    private Vector3 track_right;
 
-    private Vector3 track_forward;
+    private Vector3 track_edge;
 
     private float track_width;
+
+    private float distance_from_edge = 0;
+
+    private float speed;
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("HIT!!!");
+            OnHit.Invoke();
+        }
+    }
 
     void Start()
     {
@@ -43,21 +62,44 @@ public class Creature : MonoBehaviour
 
         if (TrackObj != null)
         {
-            (float t,Vector3 p) = TrackObj.GetPositionOnTrack(transform.position);
-            track_pos = p;
-            track_forward = TrackObj.GetForwardOnTrack(t);
-            track_width = TrackObj.GetWidth();
+            
+            track_width = TrackObj.GetWidth()+RoadWidthBuffer;
+            (float t, Vector3 p) = TrackObj.GetPositionOnTrack(transform.position);
+            track_right = Vector3.Cross(TrackObj.GetForwardOnTrack(t), Vector3.up).normalized;
+            track_edge = p + track_right * (MovementDirection == Direction.left ? -1 : 1) * track_width;
         }
+
+        speed = UnityEngine.Random.Range(SpeedRange[0], SpeedRange[1]);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (TrackObj != null)
+        {
+            float distance_moved = Time.deltaTime * speed;
+            distance_from_edge = Mathf.Repeat(distance_from_edge + distance_moved,track_width * 2);
+            transform.position = track_right * (MovementDirection == Direction.left ? 1 : -1) * distance_from_edge + track_edge;
+        }
     }
 
     void Die()
     {
-        Animator.Play(name = Hit.name);
-        Destroy(this);
+        if (Hit)
+        {
+            Animator.Play(name = Hit.name);
+            
+        }
+        StartCoroutine(DieCoroutine());
+    }
+
+    IEnumerator DieCoroutine()
+    {
+        while (Animator.IsPlaying(Hit.name))
+        {
+            yield return null;
+        }
+        Destroy(gameObject);
+        yield return null;
     }
 }

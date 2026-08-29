@@ -40,9 +40,6 @@ public class Track : MonoBehaviour
         float outT;
 
         SplineUtility.GetNearestPoint(Spline(), pos, out outPos, out outT);
-
-        Debug.Log(outPos.ToString());
-
         return (outT,new Vector3(outPos.x,outPos.y,outPos.z));
     }
 

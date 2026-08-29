@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             InputSystem.EnableDevice(GravitySensor.current);
         }
-
+         
         if(Microphone.devices.Length > 0)
         {
             MicrophoneInUse = true;
@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
         if (MicrophoneInUse)
         {
             MicSamples.GetData(sample_window, Microphone.GetPosition(null) - WINDOW_SIZE);
-            Debug.Log("SAMPLE: " + sample_window.Last().ToString());
         }
     }
 
