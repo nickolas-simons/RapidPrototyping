@@ -19,22 +19,19 @@ public class Creature : MonoBehaviour
     private float RoadWidthBuffer;
 
     [SerializeField]
-    private AnimationClip Idle;
+    private Animator Anim;
 
     [SerializeField]
-    private AnimationClip Walk;
-
-    [SerializeField]
-    private AnimationClip Hit;
-
-    [SerializeField]
-    private Animation Animator;
+    private float HitDuration;
 
     [SerializeField]
     private Direction MovementDirection;
 
     [SerializeField]
     private Vector2 SpeedRange;
+
+    [SerializeField]
+    private float SlideRate;
 
     private Vector3 track_right;
 
@@ -46,11 +43,15 @@ public class Creature : MonoBehaviour
 
     private float speed;
 
+    private bool bIsHit;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            bIsHit = true;
+            transform.parent = other.gameObject.transform; 
             Debug.Log("HIT!!!");
             OnHit.Invoke();
         }
@@ -59,6 +60,8 @@ public class Creature : MonoBehaviour
     void Start()
     {
         OnHit.AddListener(Die);
+        if (MovementDirection == Direction.left)
+            transform.localScale = new Vector3(-1, 1, 1);
 
         if (TrackObj != null)
         {
@@ -75,7 +78,7 @@ public class Creature : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TrackObj != null)
+        if (TrackObj != null && !bIsHit)
         {
             float distance_moved = Time.deltaTime * speed;
             distance_from_edge = Mathf.Repeat(distance_from_edge + distance_moved,track_width * 2);
@@ -85,18 +88,16 @@ public class Creature : MonoBehaviour
 
     void Die()
     {
-        if (Hit)
-        {
-            Animator.Play(name = Hit.name);
-            
-        }
+        Anim.SetBool("bIsHit", true);
         StartCoroutine(DieCoroutine());
     }
 
     IEnumerator DieCoroutine()
     {
-        while (Animator.IsPlaying(Hit.name))
+        float time_start = Time.time;
+        while (Time.time - time_start <  HitDuration)
         {
+            transform.localPosition += new Vector3(0,SlideRate * Time.deltaTime,0);
             yield return null;
         }
         Destroy(gameObject);
