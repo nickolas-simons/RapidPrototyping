@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
-
+[ExecuteAlways]
 public class PavilionSpawner : MonoBehaviour
 {
     [SerializeField] private SplineContainer targetSpline;
