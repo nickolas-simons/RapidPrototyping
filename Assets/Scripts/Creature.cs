@@ -43,7 +43,7 @@ public class Creature : MonoBehaviour
 
     private float speed;
 
-    private bool bIsHit;
+    private bool bIsHit = false;
 
 
     private void OnTriggerEnter(Collider other)
@@ -70,6 +70,7 @@ public class Creature : MonoBehaviour
             (float t, Vector3 p) = TrackObj.GetPositionOnTrack(transform.position);
             track_right = Vector3.Cross(TrackObj.GetForwardOnTrack(t), Vector3.up).normalized;
             track_edge = p + track_right * (MovementDirection == Direction.left ? -1 : 1) * track_width;
+            distance_from_edge = Vector3.Distance(transform.position, track_edge);
         }
 
         speed = UnityEngine.Random.Range(SpeedRange[0], SpeedRange[1]);

@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
         AdditionalScorePoints = 0;
         Time.timeScale = 1f;
         start_time = Time.time;
-        GameHud.ResetTimer();
         GameHud.gameObject.SetActive(true);
         MainMenu.SetActive(false);
         started = true;
@@ -61,13 +60,12 @@ public class GameManager : MonoBehaviour
 
     public float GetRemainingTime()
     {
-        return Mathf.Clamp01(CountdownTime - (Time.time - start_time));
+        return Mathf.Clamp(CountdownTime - (Time.time - start_time),0,CountdownTime);
     }
 
     void StopGame()
     {
         Time.timeScale = 0f;
-        GameHud.gameObject.SetActive(false);
         MainMenu.SetActive(true);
         started = false;
     }
@@ -88,7 +86,7 @@ public class GameManager : MonoBehaviour
     bool GameStateUpdate()
     {
         float track_progress = PlayerVehicle.GetTrackProgress();
-        TotalScore = Mathf.RoundToInt(track_progress * TrackTotalScore) + AdditionalScorePoints;
+        TotalScore = Mathf.Max(TotalScore,Mathf.RoundToInt(track_progress * TrackTotalScore) + AdditionalScorePoints);
         return GetRemainingTime() == 0;
     }
 

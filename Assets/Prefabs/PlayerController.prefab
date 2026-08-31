@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ControlledVehicle: {fileID: 0}
-  RelativeForwardInputDecay: -0.2
+  ShoutingAcceleration: -1
+  PassiveAccelereation: 0.25

@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03fd7cec3a538944b0647b6d11afc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Settings
-  GyroSensitivity: 1.5
+  GyroSensitivity: 2
   ShoutSensitivity: 1

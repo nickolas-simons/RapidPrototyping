@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7dc97af7e6e0147ad629fb99592b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  GameHud: {fileID: 0}
+  MainMenu: {fileID: 0}
+  StartButton: {fileID: 0}
+  PlayerVehicle: {fileID: 0}
+  TrackStart: {fileID: 0}
+  TrackTotalScore: 10000
+  CountdownTime: 60
