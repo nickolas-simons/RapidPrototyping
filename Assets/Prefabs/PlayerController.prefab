@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   ControlledVehicle: {fileID: 0}
   ShoutingAcceleration: -1
-  PassiveAccelereation: 0.25
+  PassiveAccelereation: 0.5
