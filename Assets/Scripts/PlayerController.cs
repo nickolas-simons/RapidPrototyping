@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour
     private Vehicle ControlledVehicle;
 
     [SerializeField]
-    private float ShoutingAcceleration = -0.1f;
+    private float PassiveAcceleration = -0.1f;
 
     [SerializeField]
-    private float PassiveAccelereation = 1f;
+    private float PressedAcceleration = 1f;
 
     private Vector2 PlayerControlInput;
 
@@ -31,18 +31,18 @@ public class PlayerController : MonoBehaviour
         }
          
         ManualControlAction = InputSystem.actions.FindAction("ManualControl");
-        PlayerControlInput[1] = PassiveAccelereation;
+        PlayerControlInput[1] = PressedAcceleration;
     }
 
 
     public void StartShout()
     {
-        PlayerControlInput[1] = ShoutingAcceleration;
+        PlayerControlInput[1] = PassiveAcceleration;
     }
 
     public void EndShout()
     {
-        PlayerControlInput[1] = PassiveAccelereation;
+        PlayerControlInput[1] = PressedAcceleration;
     }
 
     private void UpdateControlValues(){
