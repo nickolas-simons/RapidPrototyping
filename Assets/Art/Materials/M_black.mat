@@ -20,7 +20,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: _BandCount
+  m_LockedProperties: _BandCount _scaleAmplitude
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -103,8 +103,8 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseScale: 0.1
-    - _NoiseStrength: 0.03
+    - _NoiseScale: 0.13
+    - _NoiseStrength: 0.11
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QuantizationStep: 0.03
@@ -122,6 +122,10 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     - _cloudStrength: 0.8
+    - _scaleAmplitude: 0.03
+    - _scrollspeed: 1.5
+    - _time: 0.33
+    - _timespeed: 0.58
     m_Colors:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _CloudColor: {r: 0.5686274, g: 0.078431346, b: 0.47058815, a: 1}

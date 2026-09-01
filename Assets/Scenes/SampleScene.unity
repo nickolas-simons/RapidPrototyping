@@ -8919,9 +8919,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 601376447637690313, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 999540579317999645, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3129129963055506964, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: m_Name
       value: Vehicle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129129963055506964, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: TrackObject
@@ -8930,6 +8942,10 @@ PrefabInstance:
     - target: {fileID: 4222560551573641195, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: MaxForwardAcceleration
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963933214775390747, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8377886014932933496, guid: 2be0244ba0b042a44ba898f6e83a620d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26925,6 +26941,10 @@ PrefabInstance:
     - target: {fileID: 5901189647604884384, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901189647604884384, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7687420687421367935, guid: 3fbc6c17867a8674cbfb47e6fbd38f0c, type: 3}
       propertyPath: m_Pivot.x
