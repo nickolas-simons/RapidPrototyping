@@ -252,10 +252,10 @@ MonoBehaviour:
         m_CallState: 2
   TrackObject: {fileID: 0}
   MaxAngularSpeed: 120
-  MaxForwardAcceleration: 50
-  MaxForwardSpeed: 120
-  MinForwardSpeed: 2
-  CrashSpeedDecrease: 25
+  MaxForwardAcceleration: 20
+  MaxForwardSpeed: 65
+  MinForwardSpeed: 0
+  CrashSpeedDecrease: 45
   CrashLerpTime: 0.08
   CrashInwardPushPercentage: 0.1
 --- !u!54 &4217951149537140545

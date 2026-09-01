@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 PlayerControlInput;
 
     private InputAction ManualControlAction;
-    
-    private AudioClip MicSamples;
 
     private float[] sample_window = new float[WINDOW_SIZE];
 
@@ -32,13 +30,10 @@ public class PlayerController : MonoBehaviour
             InputSystem.EnableDevice(GravitySensor.current);
         }
          
-        if(Microphone.devices.Length > 0)
-        {
-            MicrophoneInUse = true;
-            MicSamples = Microphone.Start(null, true,1, AudioSettings.outputSampleRate);
-        }
         ManualControlAction = InputSystem.actions.FindAction("ManualControl");
+        PlayerControlInput[1] = PassiveAccelereation;
     }
+
 
     public void StartShout()
     {
@@ -66,10 +61,6 @@ public class PlayerController : MonoBehaviour
         }
 
         PlayerControlInput[0] += ManualControlAction.ReadValue<Vector2>()[0];
-        if (MicrophoneInUse)
-        {
-            MicSamples.GetData(sample_window, Microphone.GetPosition(null) - WINDOW_SIZE);
-        }
     }
 
     // Update is called once per frame
