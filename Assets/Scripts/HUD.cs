@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
@@ -25,12 +26,25 @@ public class HUD : MonoBehaviour
     [SerializeField]
     private float WheelInterpRate = 0.9f;
 
+    [SerializeField]
+    private Animator BrakeAnimator;
+
+    [SerializeField]
+    private Image BrakeImage;
+
     private Quaternion base_wheel_rot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         base_wheel_rot = SteeringWheel.transform.localRotation;
+    }
+
+    public void ShowBrake(BaseEventData data)
+    {
+        PointerEventData pdata = data as PointerEventData;
+        BrakeImage.transform.position = pdata.position;
+        BrakeAnimator.SetTrigger("StartAnim");
     }
 
 
