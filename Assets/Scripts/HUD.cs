@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -27,6 +28,12 @@ public class HUD : MonoBehaviour
     private float WheelInterpRate = 0.9f;
 
     [SerializeField]
+    private GameObject FlavorText;
+
+    [SerializeField]
+    private GameObject FlavorTextAnchor;
+
+    [SerializeField]
     private Animator BrakeAnimator;
 
     [SerializeField]
@@ -45,6 +52,17 @@ public class HUD : MonoBehaviour
         PointerEventData pdata = data as PointerEventData;
         BrakeImage.transform.position = pdata.position;
         BrakeAnimator.SetTrigger("StartAnim");
+    }
+
+    public void AddFlavorText(int amount)
+    {
+        FlavorText.SetActive(true);
+        FlavorText.GetComponent<TextMeshProUGUI>().SetText((amount > 0 ? "+" : "-") + amount.ToString());
+        GameObject new_flavor_text = Instantiate(FlavorText);
+        new_flavor_text.name = "flavortext" + Random.Range(0,100);
+        new_flavor_text.transform.SetParent(FlavorTextAnchor.transform, false);
+        new_flavor_text.SetActive(false);
+        FlavorText = new_flavor_text;
     }
 
 

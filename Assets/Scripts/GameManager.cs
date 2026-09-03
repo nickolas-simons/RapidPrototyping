@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     public void AddScorePoints(int points)
     {
         AdditionalScorePoints += points;
+        GameHud.AddFlavorText(points);
     }
 
     private void ResetPosition()
