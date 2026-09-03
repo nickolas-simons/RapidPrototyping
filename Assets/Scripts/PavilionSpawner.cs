@@ -7,6 +7,8 @@ public class PavilionSpawner : MonoBehaviour
     [SerializeField] private SplineContainer targetSpline;
     [SerializeField] private GameObject pavilionPrefab;
     [SerializeField] private float lateralDistance;
+    [SerializeField] private Quaternion RotationOffset;
+    [SerializeField] private Vector3 PositionOffset;
     [SerializeField] private float space;
     
     void Start()
@@ -25,6 +27,7 @@ public class PavilionSpawner : MonoBehaviour
 
         Spline spline = targetSpline.Spline;
         float trackLength = spline.GetLength();
+        Quaternion AngleOffset = Quaternion.AngleAxis(180, Vector3.up);
 
         for(float Dist = 0; Dist < trackLength; Dist += space)
         {
@@ -33,11 +36,11 @@ public class PavilionSpawner : MonoBehaviour
             float3 tangent = spline.EvaluateTangent(t);
             Vector3 forward = new Vector3(tangent.x, tangent.y, tangent.z).normalized;
             Vector3 right = Vector3.Cross(Vector3.up, forward).normalized;
-            Quaternion rotation = Quaternion.LookRotation(forward, Vector3.up) * Quaternion.Euler(270, 0, 90); 
-            Vector3 rightSpawnPos = new Vector3(position.x, position.y, position.z) + right * lateralDistance;
+            Quaternion rotation = Quaternion.LookRotation(forward, Vector3.up) * RotationOffset; 
+            Vector3 rightSpawnPos = new Vector3(position.x, position.y, position.z) + right * lateralDistance + PositionOffset;
             Instantiate(pavilionPrefab, rightSpawnPos, rotation, transform);
-            Vector3 leftSpawnPos = new Vector3(position.x, position.y, position.z) - right * lateralDistance;
-            Instantiate(pavilionPrefab, leftSpawnPos, rotation, transform);
+            Vector3 leftSpawnPos = new Vector3(position.x, position.y, position.z) - right * lateralDistance + PositionOffset;
+            Instantiate(pavilionPrefab, leftSpawnPos, rotation * AngleOffset, transform);
         }
 
     }

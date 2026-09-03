@@ -56,6 +56,10 @@ public class Vehicle : MonoBehaviour
     private float CrashInwardPushPercentage = 0.1f;
 
 
+    [Tooltip("speed decrease value after a crash (m/s) ")]
+    [SerializeField]
+    private float MaxRelativeCarAngle = 45;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -79,6 +83,14 @@ public class Vehicle : MonoBehaviour
 
         (float t, Vector3 projected_pos) = TrackObject.GetPositionOnTrack(new_pos);
         track_progress = t;
+
+        Vector3 track_forward = TrackObject.GetForwardOnTrack(t);
+        float signed_angle = Vector3.SignedAngle(track_forward,new_forward, Vector3.up);
+        if(Mathf.Abs(signed_angle) > MaxRelativeCarAngle)
+        {
+            Quaternion rel_angle = Quaternion.AngleAxis(Mathf.Sign(signed_angle) * MaxRelativeCarAngle, Vector3.up);
+            new_forward = rel_angle * track_forward;
+        }
 
         transform.position = new_pos;
         transform.rotation = Quaternion.LookRotation(new_forward, Vector3.up);
