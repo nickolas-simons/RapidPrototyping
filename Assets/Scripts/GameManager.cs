@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -27,6 +28,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float CountdownTime = 60f;
 
+    // NEW
+    [SerializeField]
+    private Animator PoliceAnimator;
+
+    // NEW
+    [SerializeField]
+    private float PoliceFlyDuration = 0.8f;
+
     private bool started = false;
 
     private int TotalScore = 0;
@@ -44,6 +53,18 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        // NEW
+        StartCoroutine(StartGameSequence());
+    }
+
+    // NEW
+    private IEnumerator StartGameSequence()
+    {
+
+        PoliceAnimator.SetTrigger("FlyTrigger");
+
+        yield return new WaitForSecondsRealtime(PoliceFlyDuration);
+
         TotalScore = 0;
         AdditionalScorePoints = 0;
         Time.timeScale = 1f;
