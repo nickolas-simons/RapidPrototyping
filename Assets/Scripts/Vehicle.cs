@@ -60,6 +60,10 @@ public class Vehicle : MonoBehaviour
     [SerializeField]
     private float MaxRelativeCarAngle = 45;
 
+    [Tooltip("Increase to max angular speed when acceleration < 0")]
+    [SerializeField]
+    private float DriftSteerControlIncrease = 45;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -113,9 +117,9 @@ public class Vehicle : MonoBehaviour
         float forward_delta = MaxForwardAcceleration * forward_intent * Time.deltaTime;
         forward_speed = Mathf.Clamp(forward_speed + forward_delta, MinForwardSpeed, MaxForwardSpeed);
         normalized_speed = forward_speed / MaxForwardSpeed;
-
-        angular_speed = angular_intent*MaxAngularSpeed;
-        angular_speed = Mathf.Clamp(angular_speed, -MaxAngularSpeed, MaxAngularSpeed);
+        float max_ang_speed_drift = MaxAngularSpeed + (forward_intent < 0 ? DriftSteerControlIncrease : 0);
+        angular_speed = angular_intent* max_ang_speed_drift;
+        angular_speed = Mathf.Clamp(angular_speed, -max_ang_speed_drift, max_ang_speed_drift);
         normalized_angular_speed = angular_speed / MaxAngularSpeed;
     }
 
