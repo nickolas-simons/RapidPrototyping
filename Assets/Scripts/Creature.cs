@@ -53,6 +53,7 @@ public class Creature : MonoBehaviour
             bIsHit = true;
             transform.parent = other.gameObject.transform; 
             Debug.Log("HIT!!!");
+            AudioManager.Instance.PlayPedestrianCrash();
             OnHit.Invoke();
         }
     }

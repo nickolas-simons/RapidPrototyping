@@ -5,8 +5,6 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    const int WINDOW_SIZE = 1;
-
     [SerializeField]
     private Vehicle ControlledVehicle;
 
@@ -20,9 +18,6 @@ public class PlayerController : MonoBehaviour
 
     private InputAction ManualControlAction;
 
-    private float[] sample_window = new float[WINDOW_SIZE];
-
-    bool MicrophoneInUse = false;
     void Start()
     {
         if (GravitySensor.current != null)
@@ -61,6 +56,8 @@ public class PlayerController : MonoBehaviour
         }
 
         PlayerControlInput[0] += ManualControlAction.ReadValue<Vector2>()[0];
+
+        AudioManager.Instance.UpdateAudio(PlayerControlInput[1]);
     }
 
     // Update is called once per frame

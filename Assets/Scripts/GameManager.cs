@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         PoliceAnimator.SetTrigger("FlyTrigger");
 
         yield return new WaitForSecondsRealtime(PoliceFlyDuration);
+        AudioManager.Instance.SetMix(1, 1);
 
         TotalScore = 0;
         AdditionalScorePoints = 0;
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
 
     void StopGame()
     {
+        AudioManager.Instance.SetMix(0, 1);
         Time.timeScale = 0f;
         MainMenu.SetActive(true);
         started = false;

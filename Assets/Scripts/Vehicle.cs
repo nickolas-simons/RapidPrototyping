@@ -151,6 +151,8 @@ public class Vehicle : MonoBehaviour
         Quaternion target_rot = Quaternion.LookRotation(TrackForward, Vector3.up);
         float start = Time.time;
 
+        AudioManager.Instance.PlayCrash();
+
         transform.position = CrashInwardPushPercentage * p + (1f - CrashInwardPushPercentage) * transform.position;
 
         while (Time.time - start < CrashLerpTime)
