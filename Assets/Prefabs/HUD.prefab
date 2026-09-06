@@ -28,14 +28,14 @@ RectTransform:
   m_GameObject: {fileID: 12973466396648829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.3, y: 11.931001, z: 1.5375}
+  m_LocalScale: {x: 10.26185, y: 9.953995, z: 1.2827313}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 900335285003775055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 259, y: -318}
+  m_AnchoredPosition: {x: 330, y: -271}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2927266641336110563
@@ -165,11 +165,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7814323768963843492}
   - {fileID: 3044387533486683115}
   - {fileID: 7552089417720615506}
   - {fileID: 6852086192292151137}
   - {fileID: 51511865957435959}
-  - {fileID: 7814323768963843492}
   m_Father: {fileID: 48474460276670243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -293,7 +293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107.400024, y: -14.900024}
+  m_AnchoredPosition: {x: 107.400024, y: -30.700012}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5472556892950078305
@@ -430,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -271.09998, y: -14.900024}
+  m_AnchoredPosition: {x: -271.09998, y: -30.700012}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4676611474649680923
@@ -567,7 +567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 210, y: -69}
+  m_AnchoredPosition: {x: 210, y: -84.79999}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2203205152924197267
@@ -704,7 +704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 320}
+  m_AnchoredPosition: {x: 0, y: 349}
   m_SizeDelta: {x: 1058, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5943951674424647683
@@ -939,7 +939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -126.6, y: -66.2}
+  m_AnchoredPosition: {x: -126.6, y: -82}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3146560548561161258
@@ -1076,7 +1076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 135}
+  m_AnchoredPosition: {x: 0, y: 153}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8701786609067144830
@@ -1809,7 +1809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 6, y: -22}
+  m_AnchoredPosition: {x: 6, y: -10}
   m_SizeDelta: {x: 1058, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2237475102049181027
@@ -1840,7 +1840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESS AND HOLD ANYWHERE ON THE SCREEN TO BREAK
+  m_text: PRESS AND HOLD TO DRIFT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4df5d621d80733449bb7c584de91bd49, type: 2}
   m_sharedMaterial: {fileID: 5239927949336316138, guid: 4df5d621d80733449bb7c584de91bd49, type: 2}
@@ -1946,7 +1946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.2, y: 37}
+  m_AnchoredPosition: {x: 7.2, y: 80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3654513050522143198
