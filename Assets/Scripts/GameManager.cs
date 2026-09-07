@@ -41,14 +41,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float CountdownTime = 60f;
 
-    // NEW
-    [SerializeField]
-    private Animator PoliceAnimator;
-
-    // NEW
-    [SerializeField]
-    private float PoliceFlyDuration = 0.8f;
-
     private bool started = false;
 
     private int TotalScore = 0;
@@ -67,8 +59,16 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
-        // NEW
-        StartCoroutine(StartGameSequence());
+        TotalScore = 0;
+        AdditionalScorePoints = 0;
+
+        Time.timeScale = 1f;
+        start_time = Time.time;
+
+        GameHud.gameObject.SetActive(true);
+        MainMenu.SetActive(false);
+
+        started = true;
     }
 
     void ReturnToStart()
@@ -79,22 +79,6 @@ public class GameManager : MonoBehaviour
     }
 
     // NEW
-    private IEnumerator StartGameSequence()
-    {
-
-        PoliceAnimator.SetTrigger("FlyTrigger");
-
-        yield return new WaitForSecondsRealtime(PoliceFlyDuration);
-        AudioManager.Instance.SetMix(1, 1);
-
-        TotalScore = 0;
-        AdditionalScorePoints = 0;
-        Time.timeScale = 1f;
-        start_time = Time.time;
-        GameHud.gameObject.SetActive(true);
-        MainMenu.SetActive(false);
-        started = true;
-    }
 
     public float GetScore()
     {
