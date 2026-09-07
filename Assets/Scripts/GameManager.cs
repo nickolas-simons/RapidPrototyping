@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         PoliceAnimator.SetTrigger("FlyTrigger");
 
         yield return new WaitForSecondsRealtime(PoliceFlyDuration);
-        AudioManager.Instance.SetMix(1, 1);
+        AudioManager.Instance.SetMix(1, 0.25f);
 
         TotalScore = 0;
         AdditionalScorePoints = 0;
