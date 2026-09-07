@@ -14,7 +14,13 @@ public class GameManager : MonoBehaviour
     private GameObject MainMenu;
 
     [SerializeField]
+    private GameObject EndMenu;
+
+    [SerializeField]
     private Button StartButton;
+
+    [SerializeField]
+    private Button RestartButton;
 
     [SerializeField]
     private Vehicle PlayerVehicle;
@@ -56,12 +62,20 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         StartButton.onClick.AddListener(StartGame);
+        RestartButton.onClick.AddListener(ReturnToStart);
     }
 
     void StartGame()
     {
         // NEW
         StartCoroutine(StartGameSequence());
+    }
+
+    void ReturnToStart()
+    {
+        EndMenu.SetActive(false);
+        MainMenu.SetActive(true);
+        AudioManager.Instance.SetSirenVolume(0);
     }
 
     // NEW
@@ -96,7 +110,8 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.SetMix(0, 1);
         Time.timeScale = 0f;
-        MainMenu.SetActive(true);
+        EndMenu.SetActive(true);
+        GameHud.UpdateEndGameText();
         started = false;
     }
 

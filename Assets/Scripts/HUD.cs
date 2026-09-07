@@ -16,6 +16,9 @@ public class HUD : MonoBehaviour
     private TextMeshProUGUI Score;
 
     [SerializeField]
+    private TextMeshProUGUI EndScore;
+
+    [SerializeField]
     private GameManager gm;
 
     [SerializeField]
@@ -53,6 +56,11 @@ public class HUD : MonoBehaviour
     public void AddBlink()
     {
         TimerAnimator.SetTrigger("Blink");
+    }
+
+    public void UpdateEndGameText()
+    {
+        EndScore.SetText(gm.GetScore().ToString() + " YEARS");
     }
 
     public void RemoveBlink()
