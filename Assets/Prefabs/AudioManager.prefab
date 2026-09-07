@@ -444,7 +444,7 @@ MonoBehaviour:
   AccelerationHead: {fileID: 8300000, guid: 039a2fe694eaeb84c995298aaca8cf7e, type: 3}
   AccelerationLoop: {fileID: 8300000, guid: af451d2903805a143b61a6d3a5f62486, type: 3}
   BrakeHead: {fileID: 8300000, guid: 2be2b0a7fc650fd4a9d3dac641f1d218, type: 3}
-  BrakeLoop: {fileID: 8300000, guid: 8a25e6833ed8b8148871b17763813209, type: 3}
+  BrakeLoop: {fileID: 8300000, guid: 28a38471e8e9e5a47b67285d9d038bdc, type: 3}
   CrashClip: {fileID: 8300000, guid: 5759306fcf99f3f4f9283171fceb9449, type: 3}
   SirenClip: {fileID: 8300000, guid: d793eaad05523f54da4863b135484031, type: 3}
   PedestrianCrashClip: {fileID: 8300000, guid: 4c1d233a8ff1f0144b56e224b4b7aed1, type: 3}
