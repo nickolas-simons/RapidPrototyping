@@ -916,6 +916,7 @@ GameObject:
   - component: {fileID: 9139479076297771028}
   - component: {fileID: 3146560548561161258}
   - component: {fileID: 10685525346473685}
+  - component: {fileID: 1489661110584815749}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1042,6 +1043,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &1489661110584815749
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549301766874067656}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1063a8cdf5fffa459a755e3c65c6180, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5784225591188714962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,6 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   TimerText: {fileID: 10685525346473685}
+  TimerAnimator: {fileID: 1489661110584815749}
   Score: {fileID: 6073595146712930933}
   gm: {fileID: 0}
   PlayerVehicle: {fileID: 0}

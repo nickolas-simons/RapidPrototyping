@@ -23,6 +23,13 @@ public class GameManager : MonoBehaviour
     private GameObject TrackStart;
 
     [SerializeField]
+    private AnimationCurve SirenAudioCurve;
+
+    [SerializeField]
+    private float RelativeTimerBlinkTime;
+
+
+    [SerializeField]
     private float TrackTotalScore;
 
     [SerializeField]
@@ -111,6 +118,16 @@ public class GameManager : MonoBehaviour
     {
         float track_progress = PlayerVehicle.GetTrackProgress();
         TotalScore = Mathf.Max(TotalScore,Mathf.RoundToInt(track_progress * TrackTotalScore) + AdditionalScorePoints);
+
+        float t = 1 - Mathf.Clamp01(GetRemainingTime() / CountdownTime);
+        AudioManager.Instance.SetSirenVolume(SirenAudioCurve.Evaluate(t));
+
+        if(1-(GetRemainingTime()/CountdownTime) > RelativeTimerBlinkTime)
+        {
+            GameHud.AddBlink();
+        }
+
+
         return GetRemainingTime() == 0;
     }
 
@@ -119,6 +136,7 @@ public class GameManager : MonoBehaviour
     {
         if (started && GameStateUpdate())
         {
+            GameHud.RemoveBlink();
             StopGame();
             ResetPosition();
         }

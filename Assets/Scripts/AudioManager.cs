@@ -16,6 +16,9 @@ public class AudioManager : MonoBehaviour
     private AudioSource SFXAudio;
 
     [SerializeField]
+    private AudioSource SirenAudio;
+
+    [SerializeField]
     private AudioClip AccelerationHead;
 
     [SerializeField]
@@ -29,6 +32,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip CrashClip;
+
+    [SerializeField]
+    private AudioClip SirenClip;
 
     [SerializeField]
     private AudioClip PedestrianCrashClip;
@@ -72,6 +78,10 @@ public class AudioManager : MonoBehaviour
 
         MusicAudio.clip = BGM;
         MusicAudio.Play();
+
+        SirenAudio.clip = SirenClip;
+        SirenAudio.Play();
+        SirenAudio.volume = 0;
     }
 
     AudioSource GetSource(AudioState s)
@@ -129,6 +139,12 @@ public class AudioManager : MonoBehaviour
     public void PlayPedestrianCrash()
     {
         SFXAudio.PlayOneShot(PedestrianCrashClip);
+        return;
+    }
+
+    public void SetSirenVolume(float volume)
+    {
+        SirenAudio.volume = volume * SFXMix;
         return;
     }
 

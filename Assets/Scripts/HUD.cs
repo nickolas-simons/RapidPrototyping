@@ -10,6 +10,9 @@ public class HUD : MonoBehaviour
     private TextMeshProUGUI TimerText;
 
     [SerializeField]
+    private Animator TimerAnimator;
+
+    [SerializeField]
     private TextMeshProUGUI Score;
 
     [SerializeField]
@@ -45,6 +48,16 @@ public class HUD : MonoBehaviour
     void Start()
     {
         base_wheel_rot = SteeringWheel.transform.localRotation;
+    }
+
+    public void AddBlink()
+    {
+        TimerAnimator.SetTrigger("Blink");
+    }
+
+    public void RemoveBlink()
+    {
+        TimerAnimator.ResetControllerState(true);
     }
 
     public void ShowBrake(BaseEventData data)
