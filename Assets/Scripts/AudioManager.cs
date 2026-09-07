@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
     private float SFXMix = 1;
 
     [SerializeField]
-    private float MusicMix = 1;
+    private float MusicMix = 0.25f;
 
     private AudioState state;
 
@@ -63,7 +63,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         AccelerationAudio.enabled = true;
@@ -74,7 +73,8 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         state = AudioState.None;
-        AudioManager.Instance.SetMix(0, 1);
+        AudioManager.Instance.SetMix(0, 0.25f);
+        
 
         MusicAudio.clip = BGM;
         MusicAudio.Play();
@@ -119,16 +119,30 @@ public class AudioManager : MonoBehaviour
     }
 
     public void UpdateAudio(float control)
+{
+    if (control >= 0)
     {
-        if(control >= 0)
+       
+        if (state == AudioState.Brake)
         {
-            SetAudioMix(AudioState.Acceleration);
-        }else
-        {
-            SetAudioMix(AudioState.Brake);
+            BrakeAudio.Stop();
+            StopAllCoroutines(); 
         }
-        Debug.Log(state.ToString());
+        SetAudioMix(AudioState.Acceleration);
     }
+    else
+    {
+        if (state != AudioState.Brake)
+        {
+            StopAllCoroutines();
+            state = AudioState.Brake;
+            BrakeAudio.clip = BrakeLoop; 
+            BrakeAudio.volume = 1 * SFXMix;
+            BrakeAudio.Play();
+        }
+    }
+    Debug.Log(state.ToString());
+}
 
     public void PlayCrash()
     {
@@ -173,5 +187,4 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame`
 }
