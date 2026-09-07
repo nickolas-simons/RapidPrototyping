@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        AudioManager.Instance.SetMix(1, 1);
         TotalScore = 0;
         AdditionalScorePoints = 0;
 
