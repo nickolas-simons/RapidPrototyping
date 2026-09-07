@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class IntroController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class IntroController : MonoBehaviour
     [SerializeField] private GameObject introUI;
     [SerializeField] private GameObject startMenu;
 
+    [SerializeField] private Button IntroButton;
+
     [SerializeField] private float introDuration = 1.0f;
 
     private bool triggered = false;
@@ -18,20 +21,8 @@ public class IntroController : MonoBehaviour
     {
         introUI.SetActive(true);
         startMenu.SetActive(false);
+        IntroButton.onClick.AddListener(StartIntro);
     }
-
-    void Update()
-    {
-        if (triggered)
-            return;
-
-        if (Mouse.current != null &&
-            Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            StartIntro();
-        }
-    }
-
     private void StartIntro()
     {
         triggered = true;
