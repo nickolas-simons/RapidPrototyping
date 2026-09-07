@@ -139,6 +139,7 @@ public class Vehicle : MonoBehaviour
     {
         Debug.Log("HANDLE CRASH");
         forward_speed = Mathf.Clamp(forward_speed-CrashSpeedDecrease,MinForwardSpeed, MaxForwardSpeed);
+        Handheld.Vibrate();
         StartCoroutine(Bounce());
     }
 
