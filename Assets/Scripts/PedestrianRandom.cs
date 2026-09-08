@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Splines;
-
+[ExecuteAlways]
 public class SplinePedestrianSpawner : MonoBehaviour
 {
     [SerializeField]
