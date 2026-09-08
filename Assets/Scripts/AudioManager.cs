@@ -51,6 +51,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private float MusicMix = 0.25f;
 
+    [SerializeField] 
+    private AudioClip StartScreenMusic;
+    [SerializeField] 
+    private AudioClip EndScreenMusic;
+
     private AudioState state;
 
     static public AudioManager Instance {get; private set;}
@@ -78,6 +83,7 @@ public class AudioManager : MonoBehaviour
 
         MusicAudio.clip = BGM;
         MusicAudio.Play();
+        PlayStartMusic();
 
         SirenAudio.clip = SirenClip;
         SirenAudio.Play();
@@ -185,6 +191,32 @@ public class AudioManager : MonoBehaviour
         SFXAudio.volume = SFXMix;
         MusicAudio.volume = MusicMix;
 
+    }
+    public void PlayStartMusic()
+    {
+    if (StartScreenMusic != null)
+    {
+        MusicAudio.clip = StartScreenMusic;
+        MusicAudio.Play();
+    }
+    }
+
+    public void PlayGameplayMusic()
+    {
+    if (BGM != null)
+    {
+        MusicAudio.clip = BGM;
+        MusicAudio.Play();
+    }
+    }
+
+    public void PlayEndMusic()
+    {
+    if (EndScreenMusic != null)
+    {
+        MusicAudio.clip = EndScreenMusic;
+        MusicAudio.Play();
+    }
     }
 
 }

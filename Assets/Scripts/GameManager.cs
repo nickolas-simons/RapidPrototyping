@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     void StartGame()
     {
         AudioManager.Instance.SetMix(1, 1);
+        AudioManager.Instance.PlayGameplayMusic();
         TotalScore = 0;
         AdditionalScorePoints = 0;
 
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         EndMenu.SetActive(false);
         MainMenu.SetActive(true);
         AudioManager.Instance.SetSirenVolume(0);
+        AudioManager.Instance.PlayStartMusic();
     }
 
     // NEW
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour
     void StopGame()
     {
         AudioManager.Instance.SetMix(0, 1);
+        AudioManager.Instance.PlayEndMusic();
         Time.timeScale = 0f;
         EndMenu.SetActive(true);
         GameHud.UpdateEndGameText();
