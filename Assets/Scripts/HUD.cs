@@ -19,6 +19,11 @@ public class HUD : MonoBehaviour
     private TextMeshProUGUI EndScore;
 
     [SerializeField]
+    private TextMeshProUGUI HighScoreText;
+
+    private float HighScore = 0;
+
+    [SerializeField]
     private GameManager gm;
 
     [SerializeField]
@@ -61,6 +66,12 @@ public class HUD : MonoBehaviour
     public void UpdateEndGameText()
     {
         EndScore.SetText(gm.GetScore().ToString() + " YEARS");
+
+        if(gm.GetScore() > HighScore)
+        {
+            HighScore = gm.GetScore();
+            HighScoreText.SetText("HIGH SCORE: " + gm.GetScore().ToString() + " YEARS");
+        }
     }
 
     public void RemoveBlink()
