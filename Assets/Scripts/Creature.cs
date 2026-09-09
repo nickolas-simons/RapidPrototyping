@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,9 +21,6 @@ public class Creature : MonoBehaviour
     private float RoadWidthBuffer;
 
     [SerializeField]
-    private Animator Anim;
-
-    [SerializeField]
     private float HitDuration;
 
     [SerializeField]
@@ -32,6 +31,15 @@ public class Creature : MonoBehaviour
 
     [SerializeField]
     private float SlideRate;
+
+    [SerializeField]
+    private List<GameObject> CreaturePrefab;
+
+    [SerializeField]
+    private float HeightOffset;
+
+    [SerializeField]
+    private float SpriteScale = 1f;
 
     private Vector3 track_right;
 
@@ -44,6 +52,8 @@ public class Creature : MonoBehaviour
     private float speed;
 
     private bool bIsHit = false;
+
+    private Animator Anim;
 
 
     private void OnTriggerEnter(Collider other)
@@ -63,6 +73,14 @@ public class Creature : MonoBehaviour
         OnHit.AddListener(Die);
         if (MovementDirection == Direction.left)
             transform.localScale = new Vector3(-1, 1, 1);
+
+        int idx = UnityEngine.Random.Range(0, CreaturePrefab.Count);
+        GameObject child = Instantiate(CreaturePrefab[idx]);
+        child.transform.SetParent(this.transform);
+        child.transform.localPosition = new Vector3(0, HeightOffset,0);
+        child.transform.localRotation = Quaternion.identity;
+        child.transform.localScale = Vector3.one * SpriteScale;
+        Anim = child.GetComponent<Animator>();
 
         if (TrackObj != null)
         {
