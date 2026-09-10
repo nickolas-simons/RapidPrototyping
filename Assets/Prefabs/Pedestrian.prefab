@@ -70,6 +70,8 @@ MonoBehaviour:
   - {fileID: 3109459880949993828, guid: 0836a3193756eb346bde687c46a6d2f3, type: 3}
   - {fileID: 5721054273872364806, guid: 72ae1c0a217540d4d953d26c44766768, type: 3}
   HeightOffset: 0.5
+  SpriteScale: 1
+  BloodSpawnOffset: {x: 0, y: 1.5, z: 0}
 --- !u!65 &7132620292138991783
 BoxCollider:
   m_ObjectHideFlags: 0

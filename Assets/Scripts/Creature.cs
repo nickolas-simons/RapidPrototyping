@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,15 +55,39 @@ public class Creature : MonoBehaviour
 
     private Animator Anim;
 
+    [SerializeField]
+    private Vector3 BloodSpawnOffset = new Vector3(0f, 1f, 0f);
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             bIsHit = true;
-            transform.parent = other.gameObject.transform; 
+
+            // Screen Blood Overlay
+            BloodOverlayController.Instance.AddHit();
+
+            // Blood FX
+            Vector3 hitPos = transform.position + BloodSpawnOffset;
+
+            Quaternion hitRot = Quaternion.LookRotation(
+                other.transform.forward,
+                Vector3.up
+            );
+
+            if (BloodFXPool.Instance != null)
+            {
+                BloodFXPool.Instance.PlayBlood(hitPos, hitRot);
+            }
+
+            // Original logic
+            transform.parent = other.gameObject.transform;
+
             Debug.Log("HIT!!!");
+
             AudioManager.Instance.PlayPedestrianCrash();
+
             OnHit.Invoke();
         }
     }
